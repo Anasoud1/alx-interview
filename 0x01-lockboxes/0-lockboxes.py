@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+'''A module for working with lockboxes.'''
+
+
 def canUnlockAll(boxes):
     '''method that determines if all the boxes can be opened.'''
     obj = {0: 'open'}
