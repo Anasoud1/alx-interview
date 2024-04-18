@@ -10,9 +10,8 @@ def canUnlockAll(boxes):
     for k, v in obj.items():
         if v == 'open':
             for i in boxes[k]:
+                for j in boxes[i]:
+                    obj[j] = 'open'
                 obj[i] = 'open'
-                if k > i:
-                    for j in boxes[i]:
-                        obj[j] = 'open'
     res = all(value == 'open' for value in obj.values())
     return res
