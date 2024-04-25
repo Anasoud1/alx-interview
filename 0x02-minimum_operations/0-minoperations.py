@@ -3,7 +3,8 @@
 
 
 def minOperations(n):
-    '''function that calculates the fewest number of operations needed to result in exactly n H characters in the file'''
+    '''function that calculates the fewest number of operations needed to
+    result in exactly n H characters in the file'''
     if not isinstance(n, int):
         return 0
 
