@@ -35,3 +35,4 @@ try:
         print_status(dic, file_size)
 except KeyboardInterrupt:
     print_status(dic, file_size)
+    raise
