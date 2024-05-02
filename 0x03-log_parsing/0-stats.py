@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """script that reads stdin line by line and computes metrics"""
 import sys
-import re
 
 count = 0
 file_size = 0
@@ -23,11 +22,13 @@ try:
             print_status(dic, file_size)
 
         count += 1
-        file_size += int(line.split()[-1])
-
-        status_code = line.split()[-2]
-        if status_code in dic:
-            dic[status_code] += 1
+        try:
+            file_size += int(line.split()[-1])
+            status_code = line.split()[-2]
+            if status_code in dic:
+                dic[status_code] += 1
+        except Exception:
+            pass
         print_status(dic, file_size)
 except KeyboardInterrupt:
     print_status(dic, file_size)
