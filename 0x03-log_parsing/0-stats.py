@@ -6,7 +6,7 @@ import sys
 def print_status(dic, file_size):
     """print file size information"""
     print(f'File size: {file_size}')
-    for k in sorted(dic.keys()):
+    for k in dic.keys():
         if dic[k] != 0:
             print(f'{k}: {dic[k]}')
 
@@ -33,7 +33,6 @@ try:
                 dic[status_code] += 1
         except Exception:
             pass
-        print_status(dic, file_size)
+    print_status(dic, file_size)
 except KeyboardInterrupt:
     print_status(dic, file_size)
-    raise
