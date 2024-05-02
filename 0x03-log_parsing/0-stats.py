@@ -1,36 +1,46 @@
 #!/usr/bin/python3
-"""script that reads stdin line by line and computes metrics"""
+
+""" script that reads stdin line by line and computes metrics """
+
 import sys
-import re
+
+
+def printStatus(dic, size):
+    """ Prints information """
+    print("File size: {:d}".format(size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
+
+
+# sourcery skip: use-contextlib-suppress
+statusCodes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+               "404": 0, "405": 0, "500": 0}
 
 count = 0
-file_size = 0
-dic = {'200': 0, '301': 0, '400': 0, '401': 0,
-       '403': 0, '404': 0, '405': 0, '500': 0}
-
-
-def print_status(dic, file_size):
-    """print file size information"""
-    print(f'File size: {file_size}')
-    for k, v in dic.items():
-        if v != 0:
-            print(f'{k}: {v}')
-
+size = 0
 
 try:
     for line in sys.stdin:
-        pattern = (r'^\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} - \[\d{4}-\d{2}-\d{2} '
-                   r'\d{2}:\d{2}:\d{2}.\d{6}\] "GET \/projects\/260 HTTP\/1.1"'
-                   r' \d{1,3} \d+$')
-        if re.match(pattern, line):
-            if count != 0 and count % 10 == 0:
-                print_status(dic, file_size)
+        if count != 0 and count % 10 == 0:
+            printStatus(statusCodes, size)
 
-            count += 1
-            file_size += int(line.split()[-1])
+        stlist = line.split()
+        count += 1
 
-            status_code = line.split()[-2]
-            if status_code in dic:
-                dic[status_code] += 1
+        try:
+            size += int(stlist[-1])
+        except Exception:
+            pass
+
+        try:
+            if stlist[-2] in statusCodes:
+                statusCodes[stlist[-2]] += 1
+        except Exception:
+            pass
+    printStatus(statusCodes, size)
+
+
 except KeyboardInterrupt:
-    print_status(dic, file_size)
+    printStatus(statusCodes, size)
+    raise
