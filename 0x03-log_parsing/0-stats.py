@@ -6,9 +6,9 @@ import sys
 def print_status(dic, file_size):
     """print file size information"""
     print(f'File size: {file_size}')
-    for k, v in dic.items():
-        if v != 0:
-            print(f'{k}: {v}')
+    for k in sorted(dic.keys()):
+        if dic[k] != 0:
+            print(f'{k}: {dic[k]}')
 
 
 count = 0
