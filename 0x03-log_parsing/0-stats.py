@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""  """
+"""script that reads stdin line by line and computes metrics"""
 import sys
 import re
 
@@ -25,11 +25,12 @@ try:
         if re.match(pattern, line):
             if count != 0 and count % 10 == 0:
                 print_status(dic, file_size)
+
             count += 1
-            size = int(line.split()[-1])
+            file_size += int(line.split()[-1])
+
             status_code = line.split()[-2]
             if status_code in dic:
                 dic[status_code] += 1
-            file_size += size
 except KeyboardInterrupt:
     print_status(dic, file_size)
