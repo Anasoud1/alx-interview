@@ -24,6 +24,9 @@ try:
         count += 1
         try:
             file_size += int(line.split()[-1])
+        except Exception:
+            pass
+        try:
             status_code = line.split()[-2]
             if status_code in dic:
                 dic[status_code] += 1
