@@ -28,5 +28,6 @@ try:
         status_code = line.split()[-2]
         if status_code in dic:
             dic[status_code] += 1
+        print_status(dic, file_size)
 except KeyboardInterrupt:
     print_status(dic, file_size)
