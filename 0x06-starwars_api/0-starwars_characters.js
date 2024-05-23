@@ -10,7 +10,7 @@ if (process.argv.length === 3) {
     if (res.statusCode !== 200) {
       return console.error('Error:', res.statusCode, body);
     }
-    const characterUrls = body.results[process.argv[2]].characters;
+    const characterUrls = body.results[process.argv[2] - 1].characters;
     const characterNames = characterUrls.map(
       url => new Promise((resolve, reject) => {
         request.get(url, { json: true }, (err, res, body) => {
