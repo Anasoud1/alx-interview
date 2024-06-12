@@ -42,7 +42,7 @@ def island_perimeter(grid):
                       (grid[i + 1][j] == 1 if i + 1 < h else False)):
                     p += 1
                 elif (grid[i][j - 1] == 1 and
-                      (grid[i][j + 1] == 0 if j + 1 < w else False)
+                      (grid[i][j + 1] == 0 if j + 1 < w else True)
                       and grid[i - 1][j] == 1 and
                       (grid[i + 1][j] == 1 if i + 1 < h else False)):
                     p += 1
@@ -54,7 +54,7 @@ def island_perimeter(grid):
                 elif (grid[i][j - 1] == 1 and
                       (grid[i][j + 1] == 1 if j + 1 < w else False)
                       and grid[i - 1][j] == 1 and
-                      (grid[i + 1][j] == 0 if i + 1 < h else False)):
+                      (grid[i + 1][j] == 0 if i + 1 < h else True)):
                     p += 1
                 else:
                     p += 2
