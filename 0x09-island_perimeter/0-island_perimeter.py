@@ -14,33 +14,47 @@ def island_perimeter(grid):
         j = 0
         while j < w:
             if grid[i][j] == 1:
-                if (grid[i][j - 1] == 0 and grid[i][j + 1] == 0
-                   and grid[i - 1][j] == 0 and grid[i + 1][j] == 0):
+                if (grid[i][j - 1] == 0 and
+                   (grid[i][j + 1] == 0 if j + 1 < w else True)
+                   and grid[i - 1][j] == 0 and
+                   (grid[i + 1][j] == 0 if i + 1 < h else True)):
                     p = 4
                     break
-                elif (grid[i][j - 1] == 0 and grid[i][j + 1] == 0
+                elif (grid[i][j - 1] == 0 and
+                      (grid[i][j + 1] == 0 if j + 1 < w else True)
                       and grid[i - 1][j] == 0):
                     p += 3
-                elif (grid[i][j - 1] == 0 and grid[i][j + 1] == 0
-                      and grid[i + 1][j] == 0):
+                elif (grid[i][j - 1] == 0 and
+                      (grid[i][j + 1] == 0 if j + 1 < w else True)
+                      and (grid[i + 1][j] == 0 if i + 1 < h else True)):
                     p += 3
-                elif (grid[i][j - 1] == 0 and grid[i + 1][j] == 0
+                elif (grid[i][j - 1] == 0 and
+                      (grid[i + 1][j] == 0 if i + 1 < h else True)
                       and grid[i - 1][j] == 0):
                     p += 3
-                elif (grid[i][j + 1] == 0 and grid[i + 1][j] == 0
+                elif ((grid[i][j + 1] == 0 if j + 1 < w else True)
+                      and (grid[i + 1][j] == 0 if i + 1 < h else True)
                       and grid[i - 1][j] == 0):
                     p += 3
-                elif (grid[i][j - 1] == 0 and grid[i][j + 1] == 1
-                      and grid[i - 1][j] == 1 and grid[i + 1][j] == 1):
+                elif (grid[i][j - 1] == 0 and
+                      (grid[i][j + 1] == 1 if j + 1 < w else False)
+                      and grid[i - 1][j] == 1 and
+                      (grid[i + 1][j] == 1 if i + 1 < h else False)):
                     p += 1
-                elif (grid[i][j - 1] == 1 and grid[i][j + 1] == 0
-                      and grid[i - 1][j] == 1 and grid[i + 1][j] == 1):
+                elif (grid[i][j - 1] == 1 and
+                      (grid[i][j + 1] == 0 if j + 1 < w else False)
+                      and grid[i - 1][j] == 1 and
+                      (grid[i + 1][j] == 1 if i + 1 < h else False)):
                     p += 1
-                elif (grid[i][j - 1] == 1 and grid[i][j + 1] == 1
-                      and grid[i - 1][j] == 0 and grid[i + 1][j] == 1):
+                elif (grid[i][j - 1] == 1 and
+                      (grid[i][j + 1] == 1 if j + 1 < w else False) and
+                      grid[i - 1][j] == 0 and
+                      (grid[i + 1][j] == 1 if i + 1 < h else False)):
                     p += 1
-                elif (grid[i][j - 1] == 1 and grid[i][j + 1] == 1
-                      and grid[i - 1][j] == 1 and grid[i + 1][j] == 0):
+                elif (grid[i][j - 1] == 1 and
+                      (grid[i][j + 1] == 1 if j + 1 < w else False)
+                      and grid[i - 1][j] == 1 and
+                      (grid[i + 1][j] == 0 if i + 1 < h else False)):
                     p += 1
                 else:
                     p += 2
