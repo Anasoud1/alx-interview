@@ -22,10 +22,11 @@ def operation(arr):
 def isWinner(x, nums):
     benWins = 0
     mariaWins = 0
+    i = 0
 
-    for i in nums:
+    while i < x:
         count = 0
-        arr = list(range(1, i + 1))
+        arr = list(range(1, nums[i] + 1))
         while len(arr) != 1:
             arr = operation(arr)
             count += 1
@@ -33,6 +34,7 @@ def isWinner(x, nums):
             benWins += 1
         else:
             mariaWins += 1
+        i += 1
     if benWins > mariaWins:
         return 'Ben'
     elif benWins < mariaWins:
