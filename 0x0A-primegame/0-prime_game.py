@@ -3,6 +3,7 @@
 
 
 def isPrime(num):
+    '''function that return if a number is prime or not'''
     if num == 1:
         return False
     for i in range(2, num):
@@ -12,6 +13,7 @@ def isPrime(num):
 
 
 def operation(arr):
+    '''functon that return array after retreiving the primes numbers'''
     for i in arr:
         if isPrime(i):
             arr = list(filter(lambda x: x % i != 0, arr))
@@ -20,6 +22,7 @@ def operation(arr):
 
 
 def isWinner(x, nums):
+    '''function that dertermine the winner'''
     benWins = 0
     mariaWins = 0
     i = 0
