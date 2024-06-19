@@ -23,6 +23,9 @@ def operation(arr):
 
 def isWinner(x, nums):
     '''function that dertermine the winner'''
+    if x < 1 or not nums:
+        return None
+
     benWins = 0
     mariaWins = 0
     i = 0
