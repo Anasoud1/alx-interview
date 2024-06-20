@@ -1,49 +1,32 @@
 #!/usr/bin/python3
-'''Prime game'''
-
-
-def isPrime(num):
-    '''function that return if a number is prime or not'''
-    if num == 1:
-        return False
-    for i in range(2, num):
-        if num % i == 0:
-            return False
-    return True
-
-
-def operation(arr):
-    '''functon that return array after retreiving the primes numbers'''
-    for i in arr:
-        if isPrime(i):
-            arr = list(filter(lambda x: x % i != 0, arr))
-            return arr
-    return list(1)
+"""Prime game winner determination"""
 
 
 def isWinner(x, nums):
-    '''function that dertermine the winner'''
+    """Prime game winner determination"""
     if x < 1 or not nums:
         return None
 
-    benWins = 0
-    mariaWins = 0
-    i = 0
+    m_wins = 0
+    b_wins = 0
 
-    while i < x:
-        count = 0
-        arr = list(range(1, nums[i] + 1))
-        while len(arr) != 1:
-            arr = operation(arr)
-            count += 1
-        if count % 2 == 0:
-            benWins += 1
-        else:
-            mariaWins += 1
-        i += 1
-    if benWins > mariaWins:
-        return 'Ben'
-    elif benWins < mariaWins:
-        return 'Maria'
-    else:
+    # generate a list of prime number based on the max numbers in num
+    n = max(nums)
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
+
+    for x in range(2, int(n**0.5) + 1):
+        if primes[x]:
+            for y in range(x**2, n + 1, x):
+                primes[y] = False
+
+    # count the no of pm less than n i nums
+    for n in nums:
+        count = sum(primes[2:n+1])
+        b_wins += count % 2 == 0
+        m_wins += count % 2 == 1
+
+    if m_wins == b_wins:
         return None
+
+    return 'Maria' if m_wins > b_wins else 'Ben'
